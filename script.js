@@ -7,30 +7,30 @@ const cardsData = [
         id: 1,
         chapterName: "CHAPTER 1",
         // The message she sees AFTER unlocking
-        secretMessage: "I saw this dress", 
+        secretMessage: "sehj,ik u will be eager to know what i wanted to say between congratulations on completing 1st chapter 😃 and i will say not immediately but definitely between i still kyu ye chudail kahiki mujhe hi hb banaya imean there obviously many out more handsome than me also cause i never had any girl bestie i can say that u r the only first girl-friend i have ( galat mat samajma pagal bhuddi 🧓🏻) and also u look", 
         // The password you give her
-        password: "maths", 
+        password: "sam is best", 
         locked: true
     },
     {
         id: 2,
         chapterName: "CHAPTER 2",
-        secretMessage: "and thought you",
-        password: "physics", 
+        secretMessage: "beautiful in that green dress meri nazar lagjayegi thume and congratulations for completing 2nd chapter bhuddi wasnt expecting this dedication ab tho pass karva kehi rahunga aur ek bat seedha nai bol sakta awkward hoga par pata nai u feel like home nai pagalkan 😂 acha sorry such me feel like nearest dearest chudail tum pagal ho par cute ho ab mat samajna ki line mar rahahu 😑 bhudiyo 🧓🏻 ko line nai marta and i forgot to say so",
+        password: "sehjkutti", 
         locked: true
     },
     {
         id: 3,
         chapterName: "CHAPTER 3",
-        secretMessage: "would look amazing",
-        password: "chemistry", 
+        secretMessage: "jab tum koi tea spill karte ho tho me sojaya hu tere voice sunke hehe datna mat 😛 aur tujhe me ab se chirkut chudail bokunga samja 👺👹 aside of all these i really respect you yar akar tum abhi ke abhi bolo ki nikal jao life se nikal jaunga ye kya bakwas likrahahu me acha chod congratulations on completing 3rd chapter chidail wow so much dedication aisa hi sab chapters complete karvadunga dekhlena tu nai hoga fail bola na jab tak me hu tu nai hoga fail ab tu sachi se padna ha i care for you ya all the best and in next chapter im going to tell the secret ✨",
+        password: "samisgod", 
         locked: true
     },
     {
         id: 4,
         chapterName: "CHAPTER 4",
-        secretMessage: "wearing it tonight! ❤️",
-        password: "done", 
+        secretMessage: "wow finally 4th chapter huh hmmm u really that curious to know what i wanted to say i see i like this dedication tho vo bat aisa he ki vo note mene dala na vo wala scene hogaya 😬 par ek bhuddi se aur bhut kuch bolna chahta hu par rehne de for now this is good ig lets see if i say in future or not aur elon musk jo bhi banna he , fancy sports cars tho kharidna he acha sun u already got what u want now u also completed 4 chapters wow sehj now ig u will pass now but wait its isnt over there season 2 waiting 💀 ( from half blood prince )",
+        password: "i love sam ", 
         locked: true
     }
 ];
