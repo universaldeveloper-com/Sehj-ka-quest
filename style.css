@@ -60,22 +60,29 @@ p.subtitle {
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: pointer; /* Default pointer */
     min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+/* Only change scale on click if we are clicking to unlock */
 .card:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
+}
+.card.unlocked {
+    cursor: default; /* Remove pointer on unlocked cards */
+}
+.card.unlocked:active {
+    transform: none;
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .chapter-tag {
@@ -90,6 +97,17 @@ p.subtitle {
     font-size: 18px;
 }
 
+/* Image Styles */
+.card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    display: block;
+    object-fit: cover;
+    max-height: 300px;
+}
+
 .card-content {
     font-size: 18px;
     font-weight: 500;
@@ -97,11 +115,43 @@ p.subtitle {
     line-height: 1.4;
 }
 
+/* Agreement Button Section */
+.agreement-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.agreement-label {
+    font-size: 14px;
+    color: var(--ios-gray);
+    margin-bottom: 10px;
+}
+
+.ios-btn {
+    background-color: var(--ios-blue);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px; /* Pill shape */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.ios-btn:active {
+    background-color: #0063cf; /* Darker blue */
+}
+
 /* Blur effect for locked messages */
 .locked-blur {
-    filter: blur(6px);
+    filter: blur(8px);
     user-select: none;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 /* Modal (Password Popup) */
@@ -233,4 +283,4 @@ p.subtitle {
 .final-message.visible {
     opacity: 1;
     transform: translateY(0);
-}
+    }
