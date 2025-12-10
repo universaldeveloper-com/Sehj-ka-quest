@@ -6,32 +6,44 @@ const cardsData = [
     {
         id: 1,
         chapterName: "CHAPTER 1",
-        // The message she sees AFTER unlocking
-        secretMessage: "sehj,ik u will be eager to know what i wanted to say between congratulations on completing 1st chapter 😃 and i will say not immediately but definitely between i still kyu ye chudail kahiki mujhe hi hb banaya imean there obviously many out more handsome than me also cause i never had any girl bestie i can say that u r the only first girl-friend i have ( galat mat samajma pagal bhuddi 🧓🏻) and also u look", 
-        // The password you give her
-        password: "sam is best", 
-        locked: true
+        image: "pic1.jpg", 
+        secretMessage: "hmm tho chaoter 1 complete krdiya huh thik he achi ladki he th par bauni he acha tho me ye bolne wala hu ki u look gorgeous in thst green dress boyfriend tho he nai kehne keliye tho yaha bol rahahu i mean im now half blood prince par fir bhi tu bhuudi he 😏 acha chal chal kabi nai kiya hu par ab kar rahahu aur nai karynga agar mere vaja se kabi uncomfortable, awkward, strange , irritating, eww type feel hua tho  maf kardo 🙏🏻 aur boldena kabi nai karunga vo kya hena ki muje thoda attachment issues he koi care karta he tho unko aur bhi arene lagta hu chal chal bhuddi ab zyada mat soch tereko kuch aur kehna he tho mene soch liya ki tuje disney land le chalu kabhi ab zyada mat soch lechelunga mat ro pur tu manna padega ki tu bhuddi aur ganji he 😏 tab hi future ka ticket confirm hoga  aree bhul hi gaya  most imp thing is  ", 
+        password: "sehjisqueen", 
+        locked: true,
+        // NEW SETTINGS FOR THE PRANK
+        requiresAgreement: true,
+        agreementText: "I agree sam is always best",
+        agreed: false // Don't change this
     },
     {
         id: 2,
         chapterName: "CHAPTER 2",
-        secretMessage: "beautiful in that green dress meri nazar lagjayegi thume and congratulations for completing 2nd chapter bhuddi wasnt expecting this dedication ab tho pass karva kehi rahunga aur ek bat seedha nai bol sakta awkward hoga par pata nai u feel like home nai pagalkan 😂 acha sorry such me feel like nearest dearest chudail tum pagal ho par cute ho ab mat samajna ki line mar rahahu 😑 bhudiyo 🧓🏻 ko line nai marta and i forgot to say so",
-        password: "sehjkutti", 
-        locked: true
+        image: "", 
+        secretMessage: "and thought you would look...",
+        password: "physics", 
+        locked: true,
+        requiresAgreement: false, // No prank for this one
+        agreed: true
     },
     {
         id: 3,
         chapterName: "CHAPTER 3",
-        secretMessage: "jab tum koi tea spill karte ho tho me sojaya hu tere voice sunke hehe datna mat 😛 aur tujhe me ab se chirkut chudail bokunga samja 👺👹 aside of all these i really respect you yar akar tum abhi ke abhi bolo ki nikal jao life se nikal jaunga ye kya bakwas likrahahu me acha chod congratulations on completing 3rd chapter chidail wow so much dedication aisa hi sab chapters complete karvadunga dekhlena tu nai hoga fail bola na jab tak me hu tu nai hoga fail ab tu sachi se padna ha i care for you ya all the best and in next chapter im going to tell the secret ✨",
-        password: "samisgod", 
-        locked: true
+        image: "",
+        secretMessage: "amazing wearing it...",
+        password: "chemistry", 
+        locked: true,
+        requiresAgreement: false,
+        agreed: true
     },
     {
         id: 4,
         chapterName: "CHAPTER 4",
-        secretMessage: "wow finally 4th chapter huh hmmm u really that curious to know what i wanted to say i see i like this dedication tho vo bat aisa he ki vo note mene dala na vo wala scene hogaya 😬 par ek bhuddi se aur bhut kuch bolna chahta hu par rehne de for now this is good ig lets see if i say in future or not aur elon musk jo bhi banna he , fancy sports cars tho kharidna he acha sun u already got what u want now u also completed 4 chapters wow sehj now ig u will pass now but wait its isnt over there season 2 waiting 💀 ( from half blood prince )",
-        password: "i love sam ", 
-        locked: true
+        image: "",
+        secretMessage: "for our dinner tonight! ❤️",
+        password: "done", 
+        locked: true,
+        requiresAgreement: false,
+        agreed: true
     }
 ];
 
@@ -45,14 +57,17 @@ const passwordInput = document.getElementById('password-input');
 const finalReward = document.getElementById('final-reward');
 let currentCardId = null;
 
-// Load state from local storage (so it remembers if she refreshed the page)
+// Load state from local storage
 let savedState = JSON.parse(localStorage.getItem('studyQuestState'));
 
 if (savedState) {
-    // Merge saved locked status with current text config
     cardsData.forEach((card, index) => {
         if(savedState[index]) {
             card.locked = savedState[index].locked;
+            // Restore agreement status if it exists
+            if (savedState[index].agreed !== undefined) {
+                card.agreed = savedState[index].agreed;
+            }
         }
     });
 }
@@ -64,20 +79,48 @@ function renderCards() {
     cardsData.forEach(card => {
         const cardEl = document.createElement('div');
         cardEl.className = `card ${card.locked ? '' : 'unlocked'}`;
-        cardEl.onclick = () => handleCardClick(card.id);
+        
+        // Only allow clicking to unlock if it is currently locked
+        if (card.locked) {
+            cardEl.onclick = () => handleCardClick(card.id);
+        }
 
         const icon = card.locked ? '🔒' : '🔓';
-        const textClass = card.locked ? 'locked-blur' : '';
+        const blurClass = card.locked ? 'locked-blur' : '';
         const textDisplay = card.locked ? 'This message is locked.' : card.secretMessage;
+
+        // LOGIC: If unlocked BUT agreement not met yet, show the button
+        let contentHTML = '';
+
+        if (!card.locked && card.requiresAgreement && !card.agreed) {
+            // SHOW THE TRICK BUTTON
+            contentHTML = `
+                <div class="agreement-wrapper">
+                    <p class="agreement-label">Unlock content:</p>
+                    <button class="ios-btn" onclick="triggerAgreement(${card.id})">
+                        ${card.agreementText}
+                    </button>
+                </div>
+            `;
+        } else {
+            // NORMAL CONTENT (Image + Text)
+            // If locked, image is blurred. If unlocked, image is clear.
+            const imageHTML = card.image ? `<img src="${card.image}" class="card-image ${blurClass}">` : '';
+            
+            contentHTML = `
+                ${imageHTML}
+                <div class="card-content ${blurClass}">
+                    ${textDisplay}
+                </div>
+            `;
+        }
 
         cardEl.innerHTML = `
             <div class="card-header">
                 <span class="chapter-tag">${card.chapterName}</span>
                 <span class="status-icon">${icon}</span>
             </div>
-            <div class="card-content ${textClass}">
-                ${textDisplay}
-            </div>
+            ${contentHTML}
         `;
         wrapper.appendChild(cardEl);
 
@@ -91,12 +134,19 @@ function renderCards() {
 
 function handleCardClick(id) {
     const card = cardsData.find(c => c.id === id);
-    if (!card.locked) return; // Already unlocked
+    if (!card.locked) return; 
 
     currentCardId = id;
     passwordInput.value = '';
     modalOverlay.classList.add('active');
     passwordInput.focus();
+}
+
+function triggerAgreement(id) {
+    const card = cardsData.find(c => c.id === id);
+    card.agreed = true;
+    saveState();
+    renderCards();
 }
 
 function closeModal() {
@@ -108,19 +158,15 @@ function checkPassword() {
     const card = cardsData.find(c => c.id === currentCardId);
     const input = passwordInput.value;
 
-    // Compare input with password (case insensitive)
     if (input.toLowerCase().trim() === card.password.toLowerCase().trim()) {
-        // Correct Password
         card.locked = false;
         saveState();
         renderCards();
         closeModal();
     } else {
-        // Wrong Password - Animation
         const modalBox = document.getElementById('modal-box');
         modalBox.classList.add('shake');
-        passwordInput.style.borderColor = '#FF3B30'; // iOS Red
-        
+        passwordInput.style.borderColor = '#FF3B30';
         setTimeout(() => {
             modalBox.classList.remove('shake');
             passwordInput.style.borderColor = '#ccc';
@@ -132,12 +178,8 @@ function saveState() {
     localStorage.setItem('studyQuestState', JSON.stringify(cardsData));
 }
 
-// Allow pressing Enter key in input box
 passwordInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        checkPassword();
-    }
+    if (e.key === 'Enter') checkPassword();
 });
 
-// Initial Render
 renderCards();
