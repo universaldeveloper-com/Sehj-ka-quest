@@ -17,10 +17,10 @@ const cardsData = [
     },
     {
         id: 2,
-        chapterName: "CHAPTER 2",
+        chapterName: "GOLDEN BROWNS",
         image: "", 
-        secretMessage: "and thought you would look...",
-        password: "physics", 
+        secretMessage: "CONGRATULATIONS tune chapter 2 bhi complete kiya he hmm bahut kuch batana he bahut kuch khul ke batana he par kuch bate keh nai sakta shej,hum pata nai kis reason ki waja se mile he par u r the lucky charam and good happened this year ngl bauni he par badi achi he yar ek bat batau muje pata nai ye friendship kab tak rahega par jab tak hoga tab tak i care about u, i adore you, i help you, i motivate you . kabhi socha nai ki ek 5 feet ki kubsurat bauni se itna jaldi attach hojaunga. bus kehta nai hu par i miss you a lot  ahmmm ahmmm kuch emotional hgya hu chal chal bandr kahiki sigma se soft bana rahihe . kabhi zindagi me muskil aya aur tuje help chahiye tho muje yad rakna socha ta ki breakup ke bad koi aur ldki se bat tak nsi karunga par kher kon bola tu ladki he . tu health ka dyan rako aur tention mat kr carrier ka kuch ameer ladko se shadi krlo aur paise dedo muje chill krunga mst hahaha. tq 4 everything seno. even tho we know each other less than 3 months but feel like i know u from 3 years. abe sun alooo khayega? hehe. i wish i know u before this is not just a sentence. ab jobi ho tera problems is mera problems so phadle chudail tu sachi me chapters complete kr rahihona 🤨 bhut barunga nai nai marsakta par bech dunga . sehj , i really respect you ( tatti ka respect). i dont make promises because ik i break them but i promise you one day we will explore this world . are kich kehna he bul gaya han asli chez tho bolna hi bhul gaya this one may stunn u nd u may have many questions u even cry so i ",
+        password: "samisbatman", 
         locked: true,
         requiresAgreement: false, // No prank for this one
         agreed: true
