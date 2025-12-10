@@ -5,7 +5,7 @@
 const cardsData = [
     {
         id: 1,
-        chapterName: "CHAPTER 1",
+        chapterName: "THE BEGINNING",
         image: "pic1.jpg", 
         secretMessage: "hmm tho chaoter 1 complete krdiya huh thik he achi ladki he th par bauni he acha tho me ye bolne wala hu ki u look gorgeous in thst green dress boyfriend tho he nai kehne keliye tho yaha bol rahahu i mean im now half blood prince par fir bhi tu bhuudi he 😏 acha chal chal kabi nai kiya hu par ab kar rahahu aur nai karynga agar mere vaja se kabi uncomfortable, awkward, strange , irritating, eww type feel hua tho  maf kardo 🙏🏻 aur boldena kabi nai karunga vo kya hena ki muje thoda attachment issues he koi care karta he tho unko aur bhi arene lagta hu chal chal bhuddi ab zyada mat soch tereko kuch aur kehna he tho mene soch liya ki tuje disney land le chalu kabhi ab zyada mat soch lechelunga mat ro pur tu manna padega ki tu bhuddi aur ganji he 😏 tab hi future ka ticket confirm hoga  aree bhul hi gaya  most imp thing is  ", 
         password: "sehjisqueen", 
@@ -27,7 +27,7 @@ const cardsData = [
     },
     {
         id: 3,
-        chapterName: "CHAPTER 3",
+        chapterName: "TO ME,ITS HEAVEN",
         image: "",
         secretMessage: "amazing wearing it...",
         password: "chemistry", 
@@ -37,7 +37,7 @@ const cardsData = [
     },
     {
         id: 4,
-        chapterName: "CHAPTER 4",
+        chapterName: "PROVE ME WRONG",
         image: "",
         secretMessage: "for our dinner tonight! ❤️",
         password: "done", 
