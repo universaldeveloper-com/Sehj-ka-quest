@@ -172,24 +172,36 @@ function checkPassword() {
     const card = cardsData.find(c => c.id === currentCardId);
     const input = passwordInput.value;
 
+    // Check if password matches (ignoring capital letters and spaces)
     if (input.toLowerCase().trim() === card.password.toLowerCase().trim()) {
+        
+        // ----------------------------------------------------
+        // 🎵 MUSIC FIX: Play immediately when button is clicked
+        // ----------------------------------------------------
+        if (card.id === 4) {
+            var audio = document.getElementById('bg-music');
+            if(audio) {
+                audio.volume = 1.0; // Max volume
+                audio.play().catch(e => console.log("Audio play error:", e));
+            }
+        }
+        // ----------------------------------------------------
+
+        // Now unlock the card and close the modal
         card.locked = false;
         saveState();
         renderCards();
         closeModal();
 
-        // 🎵 IF CHAPTER 4, PLAY MUSIC IMMEDIATELY
-        if (card.id === 4) {
-            playMusic();
-        }
-
     } else {
+        // Wrong Password Animation (Shake effect)
         const modalBox = document.getElementById('modal-box');
         modalBox.classList.add('shake');
-        passwordInput.style.borderColor = '#FF3B30';
+        passwordInput.style.borderColor = '#FF3B30'; // Turn red
+        
         setTimeout(() => {
             modalBox.classList.remove('shake');
-            passwordInput.style.borderColor = '#ccc';
+            passwordInput.style.borderColor = '#ccc'; // Turn back to gray
         }, 500);
     }
 }
