@@ -60,19 +60,18 @@ p.subtitle {
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
-    cursor: pointer; /* Default pointer */
+    cursor: pointer;
     min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* Only change scale on click if we are clicking to unlock */
 .card:active {
     transform: scale(0.99);
 }
 .card.unlocked {
-    cursor: default; /* Remove pointer on unlocked cards */
+    cursor: default;
 }
 .card.unlocked:active {
     transform: none;
@@ -115,7 +114,7 @@ p.subtitle {
     line-height: 1.4;
 }
 
-/* Agreement Button Section */
+/* Agreement & Music Button Section */
 .agreement-wrapper {
     display: flex;
     flex-direction: column;
@@ -134,7 +133,7 @@ p.subtitle {
     color: white;
     border: none;
     padding: 14px 24px;
-    border-radius: 30px; /* Pill shape */
+    border-radius: 30px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -144,7 +143,21 @@ p.subtitle {
 }
 
 .ios-btn:active {
-    background-color: #0063cf; /* Darker blue */
+    background-color: #0063cf;
+}
+
+/* Small Music Replay Button */
+.music-btn {
+    margin-top: 15px;
+    background: #F2F2F7;
+    color: var(--ios-blue);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
 }
 
 /* Blur effect for locked messages */
@@ -283,4 +296,4 @@ p.subtitle {
 .final-message.visible {
     opacity: 1;
     transform: translateY(0);
-    }
+        }
