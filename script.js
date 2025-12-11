@@ -29,8 +29,8 @@ const cardsData = [
         id: 3,
         chapterName: "TO ME,ITS HEAVEN",
         image: "",
-        secretMessage: "amazing wearing it...",
-        password: "chemistry", 
+        secretMessage: "LOVE",
+        password: "03062007", 
         locked: true,
         requiresAgreement: false,
         agreed: true
