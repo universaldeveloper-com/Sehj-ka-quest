@@ -34,11 +34,18 @@
         </div>
     </div>
 
-    <!-- Audio Player (Hidden) -->
-    <!-- Make sure your file is named music.mp3 -->
-    <audio id="bg-music" loop>
+    <!-- Audio Player -->
+    <!-- Added error checking: It will alert you if the file name is wrong -->
+    <audio id="bg-music" loop onerror="alert('Error: The website cannot find music.mp3. \n\n1. Make sure the file is named exactly music.mp3 (lowercase).\n2. Make sure it is in the same folder on GitHub.')">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Hidden Test Button (For you to check if audio works) -->
+    <div style="margin-top: 50px; opacity: 0.3; text-align: center;">
+        <button onclick="document.getElementById('bg-music').play()" style="padding: 10px;">
+            Test Audio (Click to check)
+        </button>
+    </div>
 
     <!-- Link to the JavaScript file -->
     <script src="script.js"></script>
