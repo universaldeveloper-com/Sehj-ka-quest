@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Study Quest</title>
-    <!-- Link to the CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +13,6 @@
         <p class="subtitle">Complete chapters to unlock cards.</p>
     </header>
 
-    <!-- Cards will be injected here by JavaScript -->
     <div class="card-container" id="cards-wrapper"></div>
 
     <div class="final-message" id="final-reward">
@@ -35,19 +33,51 @@
     </div>
 
     <!-- Audio Player -->
-    <!-- Added error checking: It will alert you if the file name is wrong -->
-    <audio id="bg-music" loop onerror="alert('Error: The website cannot find music.mp3. \n\n1. Make sure the file is named exactly music.mp3 (lowercase).\n2. Make sure it is in the same folder on GitHub.')">
+    <audio id="bg-music" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Hidden Test Button (For you to check if audio works) -->
-    <div style="margin-top: 50px; opacity: 0.3; text-align: center;">
-        <button onclick="document.getElementById('bg-music').play()" style="padding: 10px;">
-            Test Audio (Click to check)
+    <!-- 🛠 DEBUG TOOL: This will tell you if the file exists -->
+    <div style="margin-top: 40px; padding: 20px; background: #fff; border-radius: 12px; font-size: 12px; color: #333; max-width: 300px;">
+        <strong>⚠️ SYSTEM CHECK (Remove later)</strong><br><br>
+        
+        Music File Status: <span id="status-text">Checking...</span><br><br>
+        
+        <button onclick="testPlay()" style="background: #007AFF; color: white; border: none; padding: 8px 12px; border-radius: 6px;">
+            Force Play Music
         </button>
+        <br><br>
+        <small id="error-log" style="color: red;"></small>
     </div>
 
-    <!-- Link to the JavaScript file -->
     <script src="script.js"></script>
+
+    <!-- Diagnostic Script -->
+    <script>
+        // 1. Check if the file actually exists on GitHub
+        fetch('music.mp3')
+            .then(response => {
+                const statusEl = document.getElementById('status-text');
+                if (response.ok) {
+                    statusEl.innerHTML = "✅ <b>FOUND!</b> (File is accessible)";
+                    statusEl.style.color = "green";
+                } else {
+                    statusEl.innerHTML = "❌ <b>MISSING (404)</b>";
+                    statusEl.style.color = "red";
+                    document.getElementById('error-log').innerText = "GitHub cannot see 'music.mp3'. Check file name spelling!";
+                }
+            })
+            .catch(err => {
+                document.getElementById('status-text').innerText = "Error checking file.";
+            });
+
+        function testPlay() {
+            var audio = document.getElementById('bg-music');
+            audio.volume = 1.0;
+            audio.play()
+                .then(() => alert("Playing! If you don't hear it, check your volume/silent switch."))
+                .catch(e => alert("Play failed: " + e.message));
+        }
+    </script>
 </body>
 </html>
